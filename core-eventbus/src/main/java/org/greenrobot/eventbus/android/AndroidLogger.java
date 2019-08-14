@@ -17,11 +17,11 @@ package org.greenrobot.eventbus.android;
 
 import android.util.Log;
 
-import org.greenrobot.eventbus.Logger;
+import org.greenrobot.eventbus.EventBusLogger;
 
 import java.util.logging.Level;
 
-public class AndroidLogger implements Logger {
+public class AndroidLogger implements EventBusLogger {
 
     private final String tag;
     private static final boolean ANDROID_LOG_AVAILABLE;

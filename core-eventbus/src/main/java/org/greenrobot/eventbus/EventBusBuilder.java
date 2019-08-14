@@ -47,7 +47,7 @@ public class EventBusBuilder {
     ExecutorService executorService = DEFAULT_EXECUTOR_SERVICE;
     List<Class<?>> skipMethodVerificationForClasses;
     List<SubscriberInfoIndex> subscriberInfoIndexes;
-    Logger logger;
+    EventBusLogger logger;
     MainThreadSupport mainThreadSupport;
 
     private EventBusBuilder() {
@@ -184,19 +184,19 @@ public class EventBusBuilder {
      * By default all logging is via {@link android.util.Log} but if you want to use EventBus
      * outside the Android environment then you will need to provide another log target.
      */
-    public EventBusBuilder logger(Logger logger) {
+    public EventBusBuilder logger(EventBusLogger logger) {
         this.logger = logger;
         return this;
     }
 
-    Logger getLogger() {
+    EventBusLogger getLogger() {
         if (logger != null) {
             return logger;
         } else {
             // also check main looper to see if we have "good" Android classes (not Stubs etc.)
             return AndroidLogger.isAndroidLogAvailable() && getAndroidMainLooperOrNull() != null
                     ? new AndroidLogger("EventBus") :
-                    new Logger.SystemOutLogger();
+                    new EventBusLogger.SystemOutLogger();
         }
     }
 

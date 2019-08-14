@@ -27,12 +27,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface Subscribe {
-    /**
-     * TODO 默认主线程
-     *
-     * @return
-     */
-    ThreadMode threadMode() default ThreadMode.MAIN;
+    ThreadMode threadMode() default ThreadMode.POSTING;
 
     /**
      * If true, delivers the most recent sticky event (posted with

@@ -91,7 +91,7 @@ public class EventBus {
     private final boolean eventInheritance;
 
     private final int indexCount;
-    private final Logger logger;
+    private final EventBusLogger logger;
 
     /**
      * Convenience singleton for apps using a process-wide EventBus instance.
@@ -698,7 +698,7 @@ public class EventBus {
     /**
      * For internal use only.
      */
-    public Logger getLogger() {
+    public EventBusLogger getLogger() {
         return logger;
     }
 

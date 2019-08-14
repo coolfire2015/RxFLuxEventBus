@@ -17,13 +17,13 @@ package org.greenrobot.eventbus;
 
 import java.util.logging.Level;
 
-public interface Logger {
+public interface EventBusLogger {
 
     void log(Level level, String msg);
 
     void log(Level level, String msg, Throwable th);
 
-    public static class JavaLogger implements Logger {
+    public static class JavaLogger implements EventBusLogger {
         protected final java.util.logging.Logger logger;
 
         public JavaLogger(String tag) {
@@ -44,7 +44,7 @@ public interface Logger {
 
     }
 
-    public static class SystemOutLogger implements Logger {
+    public static class SystemOutLogger implements EventBusLogger {
 
         @Override
         public void log(Level level, String msg) {
