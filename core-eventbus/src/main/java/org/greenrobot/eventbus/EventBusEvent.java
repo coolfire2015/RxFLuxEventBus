@@ -8,13 +8,40 @@ import androidx.annotation.NonNull;
  * Created by liujunfeng on 2019/1/1.
  */
 public abstract class EventBusEvent {
-    protected final String mTag;
+    /**
+     * 事件标志tag
+     */
+    protected final String tag;
+    /**
+     * 是否被全局捕获处理，默认true：全局捕获处理。
+     * <p>
+     * true:{@link EventBus#post(Object)}和{@link EventBus#postSticky(Object)}，使用统一tag："defaultTag"。
+     * <p>
+     * false:{@link EventBus#post(Object)}和{@link EventBus#postSticky(Object)}，使用自身{@link EventBusEvent#tag}。
+     */
+    private boolean isGlobalCatch = true;
 
     protected EventBusEvent(@NonNull String tag) {
-        this.mTag = tag;
+        this.tag = tag;
     }
 
+
+    /**
+     * @return
+     */
     public String getTag() {
-        return mTag;
+        return tag;
+    }
+
+    public boolean isGlobalCatch() {
+        return isGlobalCatch;
+    }
+
+    /**
+     * @param globalCatch
+     * @
+     */
+    public void setGlobalCatch(boolean globalCatch) {
+        isGlobalCatch = globalCatch;
     }
 }

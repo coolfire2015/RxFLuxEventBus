@@ -316,8 +316,21 @@ public class EventBus {
         }
     }
 
+    /**
+     * 发送事件
+     *
+     * @param event 如果是{@link EventBusEvent}子类，根据{@link EventBusEvent#isGlobalCatch()}发送
+     */
     public void post(Object event) {
-        post(event, "defaultTag");
+        if (event instanceof EventBusEvent) {
+            if (((EventBusEvent) event).isGlobalCatch()) {
+                post(event, "defaultTag");
+            } else {
+                post(event, ((EventBusEvent) event).tag);
+            }
+        } else {
+            post(event, "defaultTag");
+        }
     }
 
     /**
@@ -373,8 +386,21 @@ public class EventBus {
         postingState.canceled = true;
     }
 
+    /**
+     * 发送粘性事件
+     *
+     * @param event 如果是{@link EventBusEvent}子类，根据{@link EventBusEvent#isGlobalCatch()}发送
+     */
     public void postSticky(Object event) {
-        postSticky(event, "defaultTag");
+        if (event instanceof EventBusEvent) {
+            if (((EventBusEvent) event).isGlobalCatch()) {
+                postSticky(event, "defaultTag");
+            } else {
+                postSticky(event, ((EventBusEvent) event).tag);
+            }
+        } else {
+            postSticky(event, "defaultTag");
+        }
     }
 
     /**
